@@ -491,13 +491,10 @@ static void compr_event_handler(uint32_t opcode,
 		prtd->copied_total = prtd->bytes_received;
 		atomic_set(&prtd->error, 1);
 		wake_up(&prtd->drain_wait);
-<<<<<<< HEAD
-=======
 		if (atomic_cmpxchg(&prtd->eos, 1, 0)) {
 			pr_debug("%s:unblock eos wait queues", __func__);
 			wake_up(&prtd->eos_wait);
 		}
->>>>>>> upstream/mkl
 		spin_unlock_irqrestore(&prtd->lock, flags);
 		break;
 	default:
@@ -1123,12 +1120,9 @@ static int msm_compr_drain_buffer(struct msm_compr_audio *prtd,
 		prtd->cmd_interrupt = 0;
 	}
 	if (atomic_read(&prtd->error)) {
-<<<<<<< HEAD
 		pr_err("%s: Got RESET EVENTS notification, return\n", __func__);
-=======
 		pr_err("%s: Got RESET EVENTS notification, return\n",
 			__func__);
->>>>>>> upstream/mkl
 		rc = -ENETRESET;
 	}
 	return rc;
